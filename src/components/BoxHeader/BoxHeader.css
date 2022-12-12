@@ -1,0 +1,15 @@
+.container-box-header{
+}
+
+.box-header{
+    width: 140px;
+    height: 30px;
+    background-color: transparent;
+    border: 1px dashed  #333;
+    border-radius: 500px;
+}
+
+.title-box-header{
+    color: #555;
+    margin-left: 5px;
+}

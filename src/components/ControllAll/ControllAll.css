@@ -1,0 +1,49 @@
+.controll-all {
+  display: flex;
+}
+
+.play-btn {
+  width: 55px;
+  height: 55px;
+}
+
+.volume-all {
+  appearance: none;
+  border-radius: 500px;
+  height: 16px;
+  width: 100px;
+  cursor: pointer;
+  box-shadow: inset 0 0px 7px -2px #05e6ee;
+
+}
+
+.volume-all::-webkit-slider-thumb {
+  opacity: 0;
+}
+
+.sub-volume {
+  position: absolute;
+  display: block;
+  width: var(--width);
+  height: 16px;
+  border-radius: 500px;
+  cursor: none;
+  background-color: rgb(14, 193, 253);
+  pointer-events: none;
+
+}
+
+.container-volume {
+  margin: 8px 0 0 20px;
+}
+
+.container-volume h2 {
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.disable{
+  opacity: .6;
+  cursor: none;
+  pointer-events: none;
+}

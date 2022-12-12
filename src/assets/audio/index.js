@@ -1,6 +1,8 @@
 const audio = {
   rain: require("./rain.mp3"),
-  rain_thunder: require("./rain_thunder.wav"),
+  thunder: require("./thunder.mp3"),
+  dog: require("./dog.mp3"),
+  piano: require("./piano.mp3"),
 };
 
 export default audio;

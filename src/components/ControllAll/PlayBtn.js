@@ -1,4 +1,3 @@
-import "./ControllAll.css";
 import images from "../../assets/img";
 import audio from "../../assets/audio";
 import { useEffect, useRef, useState } from "react";

@@ -8,7 +8,7 @@ function BoxItem({
   setBoxes,
   boxes,
   setPlayItems,
-  num,
+  numBox,
   setNum,
   playItems,
 }) {
@@ -37,7 +37,7 @@ function BoxItem({
   const handlerClick = () => {
     setBoxes((current) => {
       return current.map((box) => {
-        if (num < 3) {
+        if (numBox < 3) {
           return box.id !== id
             ? box
             : {
@@ -56,7 +56,7 @@ function BoxItem({
       });
     });
 
-    if (num < 3) {
+    if (numBox < 3) {
       refBox.current.classList.toggle("select");
     } else {
       refBox.current.classList.remove("select");

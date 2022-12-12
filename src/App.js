@@ -15,7 +15,7 @@ function App() {
   );
   const [isPlay, setIsPlay] = useState(false);
   const [playItems, setPlayItems] = useState([]);
-  const [num, setNum] = useState(0);
+  const [numBox, setNum] = useState(0);
 
   useEffect(() => {
     const play = boxes.find((box) => {
@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <Header
-        num={num}
+        numBox={numBox}
         playItems={playItems}
         setIsPlay={setIsPlay}
         isPlay={isPlay}
@@ -38,7 +38,7 @@ function App() {
 
       <Content
         playItems={playItems}
-        num={num}
+        numBox={numBox}
         setNum={setNum}
         setPlayItems={setPlayItems}
         boxes={boxes}

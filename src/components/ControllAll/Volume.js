@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 function Volume({ volumeAll }) {
   const [volume, setVolume] = useState(50);
-  const [style, setWidth] = useState("50px");
+  const [width, setWidth] = useState("50px");
 
   useEffect(() => {
     volumeAll((1 / 100) * volume);
@@ -16,7 +16,7 @@ function Volume({ volumeAll }) {
   return (
     <div className="container-volume">
       <h2> Volume</h2>
-      <div style={{ "--width": style }} className="sub-volume"></div>
+      <div style={{ "--width": width }} className="sub-volume"></div>
       <input
         min={0}
         max={100}

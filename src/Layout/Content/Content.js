@@ -1,7 +1,5 @@
 import BoxItem from "../../components/BoxItem/BoxItem";
 import "./Content.css";
-import images from "../../assets/img";
-import audio from "../../assets/audio";
 import { useEffect } from "react";
 
 function Content(props) {
@@ -11,7 +9,7 @@ function Content(props) {
     isPlay,
     setPlay,
     setPlayItems,
-    num,
+    numBox,
     setNum,
     playItems,
   } = props;
@@ -22,7 +20,7 @@ function Content(props) {
         return (
           <BoxItem
             playItems={playItems}
-            num={num}
+            numBox={numBox}
             setNum={setNum}
             setPlayItems={setPlayItems}
             boxes={boxes}

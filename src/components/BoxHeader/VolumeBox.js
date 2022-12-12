@@ -1,8 +1,9 @@
 import { useState } from "react";
+import BoxHeader from "./BoxHeader";
 import "./BoxHeader.css";
 
 function VolumeBox(props) {
-  const { title } = props;
+  const { info } = props;
   const [width, setWidth] = useState("70px");
   const [volume, setVolume] = useState(0.5);
 
@@ -11,9 +12,12 @@ function VolumeBox(props) {
     setWidth((prev) => (prev = `${event.target.value * (140 / 100)}px`));
   };
 
+  if (!info)
+    return <BoxHeader/>
+    
   return (
     <div className="container-volume-box">
-      <h3 className="title-box-header">{title}</h3>
+      <h3 className="title-box-header">{info.title}</h3>
       <div style={{ "--width": width }} className="sub-input-box"></div>
       <input
         min={0}

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
-function Volume({ volumeAll }) {
-  const [volume, setVolume] = useState(50);
+function Volume({ volumeAll, setWidthVolume }) {
+  const [value, setValue] = useState(50);
   const [width, setWidth] = useState("50px");
 
   useEffect(() => {
-    volumeAll((1 / 100) * volume);
-  }, [volume]);
+    volumeAll((1 / 100) * value);
+  }, [value]);
 
   const volumeChange = (event) => {
-    setVolume(event.target.value);
+    setValue(event.target.value);
     setWidth((prev) => (prev = `${event.target.value}px`));
   };
 
@@ -24,7 +24,7 @@ function Volume({ volumeAll }) {
         onChange={(event) => volumeChange(event)}
         className="volume-all"
         type="range"
-        value={volume}
+        value={value}
       />
     </div>
   );

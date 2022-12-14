@@ -44,6 +44,5 @@
 
 .disable{
   opacity: .6;
-  cursor: none;
   pointer-events: none;
 }

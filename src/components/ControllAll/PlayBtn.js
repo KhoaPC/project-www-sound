@@ -3,7 +3,16 @@ import audio from "../../assets/audio";
 import { useEffect, useRef, useState } from "react";
 
 function PlayBtn(props) {
-  const { volume, setBoxes, isPlay, setIsPlay } = props;
+  const ref = useRef();
+  const { volume, isPlay, setIsPlay, playItems } = props;
+
+  useEffect(() => {
+    if(!playItems.length) {
+      ref.current.classList.add('disable')
+    } else {
+      ref.current.classList.remove('disable')
+    }
+  }, [playItems]);
 
   const tooglePlay = () => {
     setIsPlay((prev) => !prev);
@@ -11,7 +20,7 @@ function PlayBtn(props) {
 
   return (
     <>
-      <div onClick={tooglePlay} className="play-btn">
+      <div ref={ref} onClick={tooglePlay} className="play-btn">
         {isPlay ? (
           <img src={images.play_btn} />
         ) : (

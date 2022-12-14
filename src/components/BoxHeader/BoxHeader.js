@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import "./BoxHeader.css";
-import VolumeBox from "./VolumeBox";
 
 function BoxHeader(props) {
   const {} = props;

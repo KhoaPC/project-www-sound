@@ -3,32 +3,21 @@ import audio from "../../assets/audio";
 import images from "../../assets/img";
 import "./BoxItem.css";
 
-function BoxItem({
-  info,
-  setBoxes,
-  boxes,
-  setPlayItems,
-  numBox,
-  setNum,
-  playItems,
-}) {
+function BoxItem({ info, boxes, setPlayItems, numBox, setNum, playItems }) {
   const { id, title, source } = info;
   const refBox = useRef();
   const refAudio = useRef();
-  const [foo, setFoo] = useState([]);
 
   const selected = useMemo(() => {
+    const curItem = playItems.find((item) => {
+      return item.id === id;
+    });
+
+    if (curItem) {
+      refAudio.current.volume = curItem.volume;
+    }
     return playItems.some((item) => item.id === id);
   }, [playItems]);
-
-  const handlerClick2 = useCallback(() => {
-    if (selected)
-      return setPlayItems((current) => {
-        return current.filter((item) => item.id !== id);
-      });
-
-    setPlayItems(current => [...current, info]);
-  }, [playItems, selected]); //
 
   useEffect(() => {
     if (selected) {
@@ -36,50 +25,25 @@ function BoxItem({
     } else refAudio.current.pause();
   }, [selected]);
 
-  useEffect(() => {
-    let playItem = boxes.filter((box) => {
-      return box.selected;
-    });
-
-
-
-    setPlayItems(playItem);
-  }, [boxes]);
-
-  useEffect(() => {
-    setNum(playItems.length);
-  }, [playItems]);
-
-  const handlerClick = (event) => {
-    // setIdd(id);
-    // console.log(event.target.closest(".box-sound").dataset.id);
-
-    setBoxes((current) => {
-      return current.map((box) => {
-        if (numBox < 3) {
-          return box.id !== id
-            ? box
-            : {
-                ...box,
-                selected: !box.selected,
-              };
-        }
-        return box.id !== id
-          ? box
-          : {
-              ...box,
-              selected: false,
-            };
-      });
-    });
-
-    if (numBox < 3) {
+  const handlerClick = useCallback(() => {
+    if (!selected && playItems.length < 3) {
       refBox.current.classList.toggle("select");
     } else {
       refBox.current.classList.remove("select");
     }
-  };
 
+    if (selected)
+      return setPlayItems((prev) => {
+        return prev.filter((item) => item.id !== id);
+      });
+
+    setPlayItems((prev) => {
+      if (playItems.length === 3) return prev;
+      return (prev = [...prev, info]);
+    });
+
+    setNum((prev) => (prev = playItems.length + 1));
+  }, [playItems, selected]);
   const handlerEnded = () => {
     refAudio.current.currentTime = 0;
     refAudio.current.play();
@@ -88,7 +52,7 @@ function BoxItem({
   return (
     <div
       ref={refBox}
-      onClick={(event) => handlerClick2(event)}
+      onClick={(event) => handlerClick(event)}
       data-id={id}
       className="box-sound"
     >

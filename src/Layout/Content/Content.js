@@ -5,7 +5,6 @@ import { useEffect } from "react";
 function Content(props) {
   const {
     boxes,
-    setBoxes,
     isPlay,
     setPlay,
     setPlayItems,
@@ -28,7 +27,6 @@ function Content(props) {
             setPlay={setPlay}
             key={index}
             info={box}
-            setBoxes={setBoxes}
           />
         );
       })}

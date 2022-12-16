@@ -10,7 +10,7 @@ function Volume({ volumeAll, setWidthVolume }) {
 
   const volumeChange = (event) => {
     setValue(event.target.value);
-    setWidth((prev) => (prev = `${event.target.value}px`));
+    setWidth(`${event.target.value}px`);
   };
 
   return (

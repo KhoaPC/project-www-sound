@@ -1,28 +1,54 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BoxHeader from "./BoxHeader";
 import "./BoxHeader.css";
+import { CONST_WIDTH_INPUT as widthInput } from "../../App";
 
 function VolumeBox(props) {
   const { info, playItems, setPlayItems, volume: volumeAll } = props;
-  const [value, setValue] = useState(70);
-  const [width, setWidth] = useState("70px");
+  const [value, setValue] = useState(0);
+  const [width, setWidth] = useState(`${widthInput / 2}px`);
   const [volume, setVolume] = useState(0.5);
+  const [color, setColor] = useState("");
+  const refSub = useRef();
 
   useEffect(() => {
     if (info) {
-      const elm = document
-        .querySelector(`.box-sound[data-id="${info.id}"]`)
-        .querySelector("audio");
-      elm.volume = volume;
-    }
-    setWidth((prev) => (prev = `${volumeAll * 140}px`));
+      const curItem = playItems.find((item) => {
+        return item.id === info.id;
+      });
 
-  }, [info, volume, volumeAll]);
+      if (curItem) {
+        setColor(curItem.color);
+      }
+    }
+  }, [info]);
+
+  // useEffect(() => {
+  //   const num = +width.replace("px", "");
+
+  //   if (num < 35) {
+  //     refSub.current.style.borderRadius = "500px 0px 0px 500px";
+  //   } else if (refSub.current) {
+  //     refSub.current.style.borderRadius = "500px";
+  //   }
+  // }, [width]);
+
+  useEffect(() => {
+    if (info) {
+      const elm = document.querySelector(`.box-sound[data-id="${info.id}"]`);
+      const audio = elm.querySelector("audio");
+      audio.volume = volume;
+    }
+  }, [volume]);
+
+  useEffect(() => {
+    setWidth(`${volumeAll * widthInput}px`);
+  }, [volumeAll]);
 
   const volumeChange = (event) => {
-    setVolume((prev) => (prev = (1 / 100) * event.target.value));
-    setWidth((prev) => (prev = `${event.target.value * (140 / 100)}px`));
-    setValue((prev) => (prev = event.target.value * (140 / 100)));
+    setVolume((1 / 100) * event.target.value);
+    setWidth(`${event.target.value * (widthInput / 100)}px`);
+    setValue(event.target.value);
   };
 
   if (!info) return <BoxHeader />;
@@ -30,7 +56,11 @@ function VolumeBox(props) {
   return (
     <div className="container-volume-box">
       <h3 className="title-box-header">{info.title}</h3>
-      <div style={{ "--width": width }} className="sub-input-box"></div>
+      <div
+        ref={refSub}
+        style={{ "--width": width, "--color": color }}
+        className="sub-input-box"
+      ></div>
       <input
         min={0}
         max={100}
@@ -39,6 +69,7 @@ function VolumeBox(props) {
         className="input-box-header"
         type="range"
         value={value}
+        style={{ "--color": color }}
       />
     </div>
   );

@@ -5,6 +5,8 @@ import data from "../src/assets/data.json";
 import { useEffect, useState } from "react";
 
 export const CONST_PLAY_ITEM_MAX = 3;
+export const CONST_WIDTH_INPUT_MASTER = 100;
+export const CONST_WIDTH_INPUT = 140;
 
 function App() {
   const boxes = data.map((item) => ({

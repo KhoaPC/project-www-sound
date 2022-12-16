@@ -5,6 +5,7 @@ import "./BoxItem.css";
 
 function BoxItem({ info, boxes, setPlayItems, numBox, setNum, playItems }) {
   const { id, title, source } = info;
+  const [color, setColor] = useState('black');
   const refBox = useRef();
   const refAudio = useRef();
 
@@ -14,6 +15,7 @@ function BoxItem({ info, boxes, setPlayItems, numBox, setNum, playItems }) {
     });
 
     if (curItem) {
+      setColor(curItem.color);
       refAudio.current.volume = curItem.volume;
     }
     return playItems.some((item) => item.id === id);
@@ -39,10 +41,10 @@ function BoxItem({ info, boxes, setPlayItems, numBox, setNum, playItems }) {
 
     setPlayItems((prev) => {
       if (playItems.length === 3) return prev;
-      return (prev = [...prev, info]);
+      return [...prev, info];
     });
 
-    setNum((prev) => (prev = playItems.length + 1));
+    setNum(playItems.length + 1);
   }, [playItems, selected]);
   const handlerEnded = () => {
     refAudio.current.currentTime = 0;
@@ -51,6 +53,7 @@ function BoxItem({ info, boxes, setPlayItems, numBox, setNum, playItems }) {
 
   return (
     <div
+      style={{ "--color": color }}
       ref={refBox}
       onClick={(event) => handlerClick(event)}
       data-id={id}
@@ -64,3 +67,6 @@ function BoxItem({ info, boxes, setPlayItems, numBox, setNum, playItems }) {
 }
 
 export default BoxItem;
+
+// bỏ callback
+//

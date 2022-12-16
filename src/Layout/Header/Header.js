@@ -46,7 +46,7 @@ function Header(props) {
           );
         })}
       </div>
-      <Presets />
+      <Presets setPlayItems={setPlayItems} playItems={playItems}/>
     </div>
   );
 }

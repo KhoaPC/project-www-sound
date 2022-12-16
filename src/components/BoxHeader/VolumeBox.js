@@ -1,13 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import BoxHeader from "./BoxHeader";
 import "./BoxHeader.css";
-import { CONST_WIDTH_INPUT as widthInput } from "../../App";
+import {
+  CONST_DEAFAUT_VOLUME as defaultVolume,
+  CONST_WIDTH_INPUT_MASTER as widthInputMaster,
+  CONST_WIDTH_INPUT as widthInput,
+} from "../../App";
 
 function VolumeBox(props) {
-  const { info, playItems, setPlayItems, volume: volumeAll } = props;
-  const [value, setValue] = useState(0);
+  const { info, playItems, volume } = props;
+  const [value, setValue] = useState(widthInputMaster / 2);
   const [width, setWidth] = useState(`${widthInput / 2}px`);
-  const [volume, setVolume] = useState(0.5);
+  const [volumeBox, setVolumeBox] = useState(defaultVolume);
   const [color, setColor] = useState("");
   const refSub = useRef();
 
@@ -37,16 +41,16 @@ function VolumeBox(props) {
     if (info) {
       const elm = document.querySelector(`.box-sound[data-id="${info.id}"]`);
       const audio = elm.querySelector("audio");
-      audio.volume = volume;
+      audio.volume = volumeBox;
     }
-  }, [volume]);
+  }, [volumeBox]);
 
   useEffect(() => {
-    setWidth(`${volumeAll * widthInput}px`);
-  }, [volumeAll]);
+    setWidth(`${volume * widthInput}px`);
+  }, [volume]);
 
   const volumeChange = (event) => {
-    setVolume((1 / 100) * event.target.value);
+    setVolumeBox((1 / widthInputMaster) * event.target.value);
     setWidth(`${event.target.value * (widthInput / 100)}px`);
     setValue(event.target.value);
   };

@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
+import { CONST_WIDTH_INPUT_MASTER as widthInput } from "../../App";
 
-function Volume({ volumeAll, setWidthVolume }) {
-  const [value, setValue] = useState(50);
-  const [width, setWidth] = useState("50px");
+function Volume({ volumeAll }) {
+  const [value, setValue] = useState(widthInput / 2);
 
   useEffect(() => {
-    volumeAll((1 / 100) * value);
+    volumeAll((1 / widthInput) * value);
   }, [value]);
 
   const volumeChange = (event) => {
     setValue(event.target.value);
-    setWidth(`${event.target.value}px`);
   };
 
   return (
     <div className="container-volume">
       <h2> Volume</h2>
-      <div style={{ "--width": width }} className="sub-volume"></div>
+      <div style={{ "--width": `${value}px` }} className="sub-volume"></div>
       <input
         min={0}
         max={100}

@@ -8,24 +8,11 @@ function ControllAll(props) {
     isPlay,
     setIsPlay,
     playItems,
-    setPlayItems,
-    widthVolume,
     setWidthVolume,
     volume,
     setVolume,
   } = props;
   const allAudio = document.querySelectorAll("audio");
-
-  // function setVolumeAll(event) {
-  //   setPlayItems(current => {
-  //     return current.map(item => {
-  //       return {
-  //         ...item,
-  //         volume: event.target.value
-  //       }
-  //     })
-  //   })
-  // } // setVolumeAll
 
   useEffect(() => {
     if (!isPlay) {
@@ -54,10 +41,8 @@ function ControllAll(props) {
         playItems={playItems}
         setIsPlay={setIsPlay}
         isPlay={isPlay}
-        volume={volume}
       ></PlayBtn>
       <Volume
-        widthVolume={setWidthVolume}
         volumeAll={(vol) => setVolume(vol)}
       ></Volume>
     </div>

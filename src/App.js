@@ -7,18 +7,19 @@ import { useEffect, useState } from "react";
 export const CONST_PLAY_ITEM_MAX = 3;
 export const CONST_WIDTH_INPUT_MASTER = 100;
 export const CONST_WIDTH_INPUT = 140;
+export const CONST_DEAFAUT_VOLUME = 0.5;
 
 function App() {
   const boxes = data.map((item) => ({
     ...item,
-    volume: 0.5,
+    volume: CONST_DEAFAUT_VOLUME,
   }));
 
   const [isPlay, setIsPlay] = useState(false);
   const [playItems, setPlayItems] = useState([]);
   const [numBox, setNum] = useState(0);
   const [widthVolume, setWidthVolume] = useState(50);
-  const [volume, setVolume] = useState(0.5);
+  const [volume, setVolume] = useState(CONST_DEAFAUT_VOLUME);
 
   useEffect(() => {
     playItems.length ? setIsPlay(true) : setIsPlay(false);

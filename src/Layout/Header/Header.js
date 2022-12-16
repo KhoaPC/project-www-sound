@@ -26,7 +26,6 @@ function Header(props) {
       <ControllAll
         volume={volume}
         setVolume={setVolume}
-        widthVolume={widthVolume}
         setWidthVolume={setWidthVolume}
         playItems={playItems}
         setIsPlay={setIsPlay}
@@ -39,7 +38,6 @@ function Header(props) {
               volume={volume}
               widthVolume={widthVolume}
               playItems={playItems}
-              setPlayItems={setPlayItems}
               key={index}
               info={box}
             />

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 function PlayBtn(props) {
   const ref = useRef();
-  const { volume, isPlay, setIsPlay, playItems } = props;
+  const { isPlay, setIsPlay, playItems } = props;
 
   useEffect(() => {
     if(!playItems.length) {

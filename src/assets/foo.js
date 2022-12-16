@@ -1,26 +1,23 @@
-[{
+[
+  {
     "id": "7",
     "title": "Cicadas",
-    "source": "./audio/cicadas.mp3",
-    "name_img": "cicadas"
+    "source": "cicadas"
   },
   {
     "id": "8",
     "title": "Dog",
-    "source": "./audio/dog.mp3",
-    "name_img": "dog"
+    "source": "dog"
   },
   {
     "id": "9",
     "title": "Cat",
-    "source": "./audio/cat.mp3",
-    "name_img": "cat"
+    "source": "cat"
   },
   {
     "id": "10",
     "title": "Streams",
-    "source": "./audio/streams.mp3",
-    "name_img": "streams"
+    "source": "streams"
   },
   {
     "id": "11",

@@ -3,31 +3,37 @@
     "id": "1",
     "title": "Rain",
     "source": "rain",
-    "name_img": "rain"
+    "name_img": "rain",
+    "color": "#99f6e4"
   },
   {
     "id": "2",
     "title": "Thunder",
-    "source": "thunder"
+    "source": "thunder",
+    "color": "#81259b"
   },
   {
     "id": "3",
     "title": "Piano",
-    "source": "piano"
+    "source": "piano",
+    "color": "#b45309"
   },
   {
     "id": "4",
     "title": "Fireplace",
-    "source": "fireplace"
+    "source": "fireplace",
+    "color": "#f97316"
   },
   {
     "id": "5",
     "title": "Train",
-    "source": "train"
+    "source": "train",
+    "color": "#14b8a6"
   },
   {
     "id": "6",
     "title": "Rain roof",
-    "source": "rain_roof"
+    "source": "rain_roof",
+    "color": "#a1efff"
   }
 ]

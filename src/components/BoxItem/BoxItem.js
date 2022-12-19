@@ -2,12 +2,14 @@ import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import audio from "../../assets/audio";
 import images from "../../assets/img";
 import "./BoxItem.css";
+import { CONST_PLAY_ITEM_MAX as itemMax } from "../../App";
 
-function BoxItem({ info, boxes, setPlayItems, numBox, setNum, playItems }) {
+function BoxItem({ info, setPlayItems, playItems }) {
   const { id, title, source } = info;
-  const [color, setColor] = useState('black');
+  const [color, setColor] = useState("black");
   const refBox = useRef();
   const refAudio = useRef();
+  // const [selected, setSelected] = useState(false);
 
   const selected = useMemo(() => {
     const curItem = playItems.find((item) => {
@@ -18,17 +20,20 @@ function BoxItem({ info, boxes, setPlayItems, numBox, setNum, playItems }) {
       setColor(curItem.color);
       refAudio.current.volume = curItem.volume;
     }
+
     return playItems.some((item) => item.id === id);
   }, [playItems]);
 
-  useEffect(() => {
+  useEffect(() => {    
+    
     if (selected) {
+     
       refAudio.current.play();
     } else refAudio.current.pause();
   }, [selected]);
 
   const handlerClick = useCallback(() => {
-    if (!selected && playItems.length < 3) {
+    if (!selected && playItems.length < itemMax) {
       refBox.current.classList.toggle("select");
     } else {
       refBox.current.classList.remove("select");
@@ -40,12 +45,11 @@ function BoxItem({ info, boxes, setPlayItems, numBox, setNum, playItems }) {
       });
 
     setPlayItems((prev) => {
-      if (playItems.length === 3) return prev;
+      if (playItems.length === itemMax) return prev;
       return [...prev, info];
     });
-
-    setNum(playItems.length + 1);
   }, [playItems, selected]);
+  
   const handlerEnded = () => {
     refAudio.current.currentTime = 0;
     refAudio.current.play();
@@ -53,7 +57,7 @@ function BoxItem({ info, boxes, setPlayItems, numBox, setNum, playItems }) {
 
   return (
     <div
-      style={{ "--color": color }}
+      style={{ "--color": selected ? color : 'transparent', opacity: selected ? '1' : '0.8' }}
       ref={refBox}
       onClick={(event) => handlerClick(event)}
       data-id={id}

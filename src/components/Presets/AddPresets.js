@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { v4 as uuid } from "uuid";
 
 function AddPresets(props) {
   const { playItems, setPresets } = props;
@@ -18,19 +19,20 @@ function AddPresets(props) {
 
     if (keyPreset && playItems.length) {
       let local;
+      const data = {
+        id: uuid(),
+        title: keyPreset,
+        sound: playItems,
+      };
 
       if (localStorage.getItem("presets")) {
         local = JSON.parse(localStorage.getItem("presets"));
-        local.push({ [keyPreset]: playItems });
-
+        local.push(data);
         setPresets(local);
         localStorage.setItem("presets", JSON.stringify(local));
       } else {
-        setPresets([{ [keyPreset]: playItems }]);
-        localStorage.setItem(
-          "presets",
-          JSON.stringify([{ [keyPreset]: playItems }])
-        );
+        setPresets([data]);
+        localStorage.setItem("presets", JSON.stringify([data]));
       }
     }
     setKeyPreset("");

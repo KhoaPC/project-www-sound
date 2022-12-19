@@ -39,9 +39,12 @@ function VolumeBox(props) {
 
   useEffect(() => {
     if (info) {
-      const elm = document.querySelector(`.box-sound[data-id="${info.id}"]`);
-      const audio = elm.querySelector("audio");
-      audio.volume = volumeBox;
+      try {
+        const elm = document.querySelector(`.box-sound[data-id="${info.id}"]`);
+        const audio = elm.querySelector("audio");
+        audio.volume = volumeBox;
+        
+      } catch {}
     }
   }, [volumeBox]);
 

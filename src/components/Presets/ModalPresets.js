@@ -22,7 +22,7 @@ function ModalPresets(props) {
             setPresets={setPresets}
             playItems={playItems}
           ></AddPresets>
-          <ListPresets setPlayItems={setPlayItems} presets={presets} setPresets={setPresets} />
+          <ListPresets playItems={playItems} setPlayItems={setPlayItems} presets={presets} setPresets={setPresets} />
         </div>
       </div>
     </>

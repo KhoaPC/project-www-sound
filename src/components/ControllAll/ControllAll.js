@@ -4,14 +4,8 @@ import Volume from "./Volume";
 import { useEffect, useState } from "react";
 
 function ControllAll(props) {
-  const {
-    isPlay,
-    setIsPlay,
-    playItems,
-    setWidthVolume,
-    volume,
-    setVolume,
-  } = props;
+  const { isPlay, setIsPlay, playItems, setWidthVolume, volume, setVolume } =
+    props;
   const allAudio = document.querySelectorAll("audio");
 
   useEffect(() => {
@@ -21,10 +15,12 @@ function ControllAll(props) {
       });
     } else {
       playItems.forEach((item) => {
-        const elm = document
-          .querySelector(`.box-sound[data-id="${item.id}"]`)
-          .querySelector("audio");
-        elm.play();
+        try {
+          const elm = document
+            .querySelector(`.box-sound[data-id="${item.id}"]`)
+            .querySelector("audio");
+          elm.play();
+        } catch {}
       });
     }
   }, [isPlay]);
@@ -42,9 +38,7 @@ function ControllAll(props) {
         setIsPlay={setIsPlay}
         isPlay={isPlay}
       ></PlayBtn>
-      <Volume
-        volumeAll={(vol) => setVolume(vol)}
-      ></Volume>
+      <Volume volumeAll={(vol) => setVolume(vol)}></Volume>
     </div>
   );
 }

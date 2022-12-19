@@ -20,32 +20,67 @@ function Header(props) {
     length: CONST_PLAY_ITEM_MAX - playItems.length,
   });
   const playItemsWithEmpties = [...playItems, ...addedPlayItems];
+  const [matches, setMatches] = useState(
+    window.matchMedia("(max-width: 760px)").matches
+  );
 
   return (
-    <div className="header">
-      <ControllAll
-        volume={volume}
-        setVolume={setVolume}
-        setWidthVolume={setWidthVolume}
-        playItems={playItems}
-        setIsPlay={setIsPlay}
-        isPlay={isPlay}
-      />
-      <div className="foo">
-        {playItemsWithEmpties.map((box, index) => {
-          return (
-            <VolumeBox
-              volume={volume}
-              widthVolume={widthVolume}
-              playItems={playItems}
-              key={index}
-              info={box}
-            />
-          );
-        })}
-      </div>
-      <Presets setPlayItems={setPlayItems} playItems={playItems}/>
-    </div>
+    <>
+      {matches && (
+        <div className="header min">
+          <ControllAll
+            volume={volume}
+            setVolume={setVolume}
+            setWidthVolume={setWidthVolume}
+            playItems={playItems}
+            setIsPlay={setIsPlay}
+            isPlay={isPlay}
+          />
+          <Presets setPlayItems={setPlayItems} playItems={playItems} />
+
+          <div className="foo min-header">
+            {playItemsWithEmpties.map((box, index) => {
+              return (
+                <VolumeBox
+                  volume={volume}
+                  widthVolume={widthVolume}
+                  playItems={playItems}
+                  key={index}
+                  info={box}
+                />
+              );
+            })}
+          </div>
+        </div>
+      )}
+      {!matches && (
+        <div className="header">
+          <ControllAll
+            volume={volume}
+            setVolume={setVolume}
+            setWidthVolume={setWidthVolume}
+            playItems={playItems}
+            setIsPlay={setIsPlay}
+            isPlay={isPlay}
+          />
+
+          <div className="foo">
+            {playItemsWithEmpties.map((box, index) => {
+              return (
+                <VolumeBox
+                  volume={volume}
+                  widthVolume={widthVolume}
+                  playItems={playItems}
+                  key={index}
+                  info={box}
+                />
+              );
+            })}
+          </div>
+          <Presets setPlayItems={setPlayItems} playItems={playItems} />
+        </div>
+      )}
+    </>
   );
 }
 

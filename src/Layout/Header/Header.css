@@ -12,4 +12,12 @@
   background: white;
 }
 
+.header .min {
+  height: 200px;
+}
 .foo{display: flex;}
+
+.min-header{
+  position: fixed;
+  top: 80px;
+}

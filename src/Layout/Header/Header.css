@@ -12,12 +12,18 @@
   background: white;
 }
 
-.header .min {
-  height: 200px;
+.min {
+  align-items:flex-start;
+  height: 150px;
 }
+
 .foo{display: flex;}
 
 .min-header{
   position: fixed;
   top: 80px;
+  justify-content: center;
+  
+  
+  width: 100%;
 }

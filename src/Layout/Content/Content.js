@@ -3,15 +3,7 @@ import "./Content.css";
 import { useEffect } from "react";
 
 function Content(props) {
-  const {
-    boxes,
-    isPlay,
-    setPlay,
-    setPlayItems,
-    numBox,
-    setNum,
-    playItems,
-  } = props;
+  const { boxes, isPlay, setPlay, setPlayItems, playItems } = props;
 
   return (
     <div className="container-box">
@@ -19,10 +11,7 @@ function Content(props) {
         return (
           <BoxItem
             playItems={playItems}
-            numBox={numBox}
-            setNum={setNum}
             setPlayItems={setPlayItems}
-            boxes={boxes}
             isPlay={isPlay}
             setPlay={setPlay}
             key={index}

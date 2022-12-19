@@ -17,7 +17,6 @@ function App() {
 
   const [isPlay, setIsPlay] = useState(false);
   const [playItems, setPlayItems] = useState([]);
-  const [numBox, setNum] = useState(0);
   const [widthVolume, setWidthVolume] = useState(50);
   const [volume, setVolume] = useState(CONST_DEAFAUT_VOLUME);
 
@@ -36,13 +35,10 @@ function App() {
         setPlayItems={setPlayItems}
         setIsPlay={setIsPlay}
         isPlay={isPlay}
-        boxes={boxes}
       />
 
       <Content
         playItems={playItems}
-        numBox={numBox}
-        setNum={setNum}
         setPlayItems={setPlayItems}
         boxes={boxes}
       />
@@ -51,3 +47,5 @@ function App() {
 }
 
 export default App;
+
+// selected

@@ -8,12 +8,25 @@ export const CONST_PLAY_ITEM_MAX = 3;
 export const CONST_WIDTH_INPUT_MASTER = 100;
 export const CONST_WIDTH_INPUT = 140;
 export const CONST_DEAFAUT_VOLUME = 0.5;
+const CONST_MEDIA_MOBILE = 760;
 
 function App() {
   const boxes = data.map((item) => ({
     ...item,
     volume: CONST_DEAFAUT_VOLUME,
   }));
+
+  const media = window.matchMedia(`(max-width: ${CONST_MEDIA_MOBILE}px)`);
+
+  const [matches, setMatches] = useState(media.matches);
+
+  media.onchange = (e) => {
+    if (e.matches) {
+      setMatches(true);
+    } else {
+      setMatches(false);
+    }
+  };
 
   const [isPlay, setIsPlay] = useState(false);
   const [playItems, setPlayItems] = useState([]);
@@ -27,6 +40,7 @@ function App() {
   return (
     <div className="App">
       <Header
+        matches={matches}
         volume={volume}
         setVolume={setVolume}
         widthVolume={widthVolume}
@@ -38,6 +52,7 @@ function App() {
       />
 
       <Content
+        matches={matches}
         playItems={playItems}
         setPlayItems={setPlayItems}
         boxes={boxes}

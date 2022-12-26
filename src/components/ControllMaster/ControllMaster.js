@@ -1,6 +1,6 @@
-import "./ControllAll.css";
+import "./ControllMaster.css";
 import PlayBtn from "./PlayBtn";
-import Volume from "./Volume";
+import Volume from "./VolumeMaster";
 import { useEffect, useState } from "react";
 
 function ControllAll(props) {

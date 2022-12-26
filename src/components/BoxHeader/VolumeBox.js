@@ -8,7 +8,7 @@ import {
 } from "../../App";
 
 function VolumeBox(props) {
-  const { info, playItems, volume } = props;
+  const { info, playItems, volume, matches } = props;
   const [value, setValue] = useState(widthInputMaster / 2);
   const [width, setWidth] = useState(`${widthInput / 2}px`);
   const [volumeBox, setVolumeBox] = useState(defaultVolume);
@@ -43,7 +43,6 @@ function VolumeBox(props) {
         const elm = document.querySelector(`.box-sound[data-id="${info.id}"]`);
         const audio = elm.querySelector("audio");
         audio.volume = volumeBox;
-        
       } catch {}
     }
   }, [volumeBox]);
@@ -61,24 +60,48 @@ function VolumeBox(props) {
   if (!info) return <BoxHeader />;
 
   return (
-    <div className="container-volume-box">
-      <h3 className="title-box-header">{info.title}</h3>
-      <div
-        ref={refSub}
-        style={{ "--width": width, "--color": color }}
-        className="sub-input-box"
-      ></div>
-      <input
-        min={0}
-        max={100}
-        step={5}
-        onChange={(event) => volumeChange(event)}
-        className="input-box-header"
-        type="range"
-        value={value}
-        style={{ "--color": color }}
-      />
-    </div>
+    <>
+      {!matches && (
+        <div className="container-volume-box">
+          <h3 className="title-box-header">{info.title}</h3>
+          <div
+            ref={refSub}
+            style={{ "--width": width, "--color": color }}
+            className="sub-input-box"
+          ></div>
+          <input
+            min={0}
+            max={100}
+            step={5}
+            onChange={(event) => volumeChange(event)}
+            className="input-box-header"
+            type="range"
+            value={value}
+            style={{ "--color": color }}
+          />
+        </div>
+      )}
+      {matches && (
+        <div className="container-volume-box-min">
+          <h3 className="title-box-header">{info.title}</h3>
+          <div
+            ref={refSub}
+            style={{ "--width": width, "--color": color }}
+            className="sub-input-box"
+          ></div>
+          <input
+            min={0}
+            max={100}
+            step={5}
+            onChange={(event) => volumeChange(event)}
+            className="input-box-header"
+            type="range"
+            value={value}
+            style={{ "--color": color }}
+          />
+        </div>
+      )}
+    </>
   );
 }
 

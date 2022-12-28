@@ -24,7 +24,7 @@
   width: 140px;
   cursor: pointer;
   box-shadow: inset 0 0px 7px -2px var(--color);
-  margin-right: 5px;
+  margin-right: 8px;
 }
 
 .input-box-header::-webkit-slider-thumb {
@@ -40,4 +40,9 @@
   cursor: none;
   background-color: var(--color);
   pointer-events: none;
+}
+
+
+.container-volume-box-min{
+  /* width: 100px; */
 }

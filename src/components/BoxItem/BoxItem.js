@@ -24,10 +24,8 @@ function BoxItem({ info, setPlayItems, playItems }) {
     return playItems.some((item) => item.id === id);
   }, [playItems]);
 
-  useEffect(() => {    
-    
+  useEffect(() => {
     if (selected) {
-     
       refAudio.current.play();
     } else refAudio.current.pause();
   }, [selected]);
@@ -49,7 +47,7 @@ function BoxItem({ info, setPlayItems, playItems }) {
       return [...prev, info];
     });
   }, [playItems, selected]);
-  
+
   const handlerEnded = () => {
     refAudio.current.currentTime = 0;
     refAudio.current.play();
@@ -57,14 +55,28 @@ function BoxItem({ info, setPlayItems, playItems }) {
 
   return (
     <div
-      style={{ "--color": selected ? color : 'transparent', opacity: selected ? '1' : '0.8' }}
+      style={{
+        "--color": selected ? color : "transparent",
+        // opacity: selected ? "1" : "0.6",
+        backgroundImage:  `url("${images[source]}")`
+      }}
       ref={refBox}
       onClick={(event) => handlerClick(event)}
       data-id={id}
       className="box-sound"
     >
-      <img className="img-box" src={images[source]} />
-      <h2 className="title-box">{title}</h2>
+      <div
+      style={{
+        opacity: selected ? "0" : "1",
+      }}
+      className="blur-box"></div>
+      <h2
+       style={{
+        color: selected ? "white" : "black",
+        textShadow: selected ? "0px 0px 1px black" : '0px 0px 1px white'
+     
+      }}
+      className="title-box">{title}</h2>
       <audio onEnded={handlerEnded} ref={refAudio} src={audio[source]} />
     </div>
   );

@@ -10,20 +10,18 @@
   left: 0;
   z-index: 999;
   background: white;
+  flex-wrap: wrap;
 }
 
-.min {
+.min-header {
   align-items:flex-start;
   height: 150px;
 }
 
 .foo{display: flex;}
 
-.min-header{
-  position: fixed;
+.min-box{
+  /* position: fixed; */
   top: 80px;
-  justify-content: center;
-  
-  
   width: 100%;
 }

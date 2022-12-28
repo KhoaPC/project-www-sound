@@ -1,5 +1,5 @@
 import "./Header.css";
-import ControllAll from "../../components/ControllAll/ControllAll";
+import ControllAll from "../../components/ControllMaster/ControllMaster";
 import Presets from "../../components/Presets/Presets";
 import { useEffect, useState } from "react";
 import VolumeBox from "../../components/BoxHeader/VolumeBox";
@@ -15,19 +15,17 @@ function Header(props) {
     setWidthVolume,
     volume,
     setVolume,
+    matches,
   } = props;
   const addedPlayItems = Array.from({
     length: CONST_PLAY_ITEM_MAX - playItems.length,
   });
   const playItemsWithEmpties = [...playItems, ...addedPlayItems];
-  const [matches, setMatches] = useState(
-    window.matchMedia("(max-width: 760px)").matches
-  );
 
   return (
     <>
       {matches && (
-        <div className="header min">
+        <div className="header min-header">
           <ControllAll
             volume={volume}
             setVolume={setVolume}
@@ -38,10 +36,11 @@ function Header(props) {
           />
           <Presets setPlayItems={setPlayItems} playItems={playItems} />
 
-          <div className="foo min-header">
+          <div className="foo min-box">
             {playItemsWithEmpties.map((box, index) => {
               return (
                 <VolumeBox
+                  matches={matches}
                   volume={volume}
                   widthVolume={widthVolume}
                   playItems={playItems}
@@ -68,6 +67,7 @@ function Header(props) {
             {playItemsWithEmpties.map((box, index) => {
               return (
                 <VolumeBox
+                  matches={matches}
                   volume={volume}
                   widthVolume={widthVolume}
                   playItems={playItems}
